@@ -31,6 +31,7 @@ else return false
 console.log(isHidden(true,false))
 console.log(isHidden(true,true))
 console.log(isHidden(false, false))
+
 /**
  * A strike hits if the attack value is greater than or equal
  * to the target's armor class (AC).
@@ -39,8 +40,12 @@ console.log(isHidden(false, false))
  * @returns {boolean} whether the strike hits
  */
 function doesStrikeHit(attack, ac) {
-  // TODO
+  if (attack > ac) return true;
+  else if (attack = ac) return true;
+  else false;
 }
+
+console.log(doesStrikeHit(true, false))
 
 /**
  * A strike is a critical hit if the attack value is at least
@@ -49,9 +54,12 @@ function doesStrikeHit(attack, ac) {
  * @param {number} ac - the armor class to beat
  * @returns {boolean} whether the strike is a critical hit
  */
+
 function doesStrikeCrit(attack, ac) {
-  // TODO
+  return attack >= ac + 10;
 }
+
+console.log(doesStrikeCrit(20, 15))
 
 /**
  * A creature can restore hit points (HP) by healing,
