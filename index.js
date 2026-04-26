@@ -11,10 +11,9 @@ function canCastSpell(isSpellPrepared, hasScroll) {
   return false;
 }
 
-console.log(canCastSpell(false, true))
-console.log(canCastSpell(true, true))
-console.log(canCastSpell(false, false))
-
+console.log(canCastSpell(false, true));
+console.log(canCastSpell(true, true));
+console.log(canCastSpell(false, false));
 
 /**
  * A creature is hidden from an observer if it is actively hiding
@@ -25,12 +24,12 @@ console.log(canCastSpell(false, false))
  */
 function isHidden(hiding, aware) {
   if (hiding) return true;
- else if (aware) return true;
-else return false
+  else if (aware) return true;
+  else return false;
 }
-console.log(isHidden(true,false))
-console.log(isHidden(true,true))
-console.log(isHidden(false, false))
+console.log(isHidden(true, false));
+console.log(isHidden(true, true));
+console.log(isHidden(false, false));
 
 /**
  * A strike hits if the attack value is greater than or equal
@@ -41,11 +40,11 @@ console.log(isHidden(false, false))
  */
 function doesStrikeHit(attack, ac) {
   if (attack > ac) return true;
-  else if (attack = ac) return true;
+  else if ((attack = ac)) return true;
   else false;
 }
 
-console.log(doesStrikeHit(true, false))
+console.log(doesStrikeHit(true, false));
 
 /**
  * A strike is a critical hit if the attack value is at least
@@ -59,7 +58,7 @@ function doesStrikeCrit(attack, ac) {
   return attack >= ac + 10;
 }
 
-console.log(doesStrikeCrit(20, 15))
+console.log(doesStrikeCrit(20, 15));
 
 /**
  * A creature can restore hit points (HP) by healing,
@@ -70,8 +69,12 @@ console.log(doesStrikeCrit(20, 15))
  * @returns {number} total hit points after healing
  */
 function heal(maxHp, currentHp, healAmount) {
-  // TODO
+  if (currentHp + healAmount > maxHp) {
+    return maxHp;
+  } else return currentHp + healAmount;
 }
+
+console.log(heal(100, 80, 10));
 
 /**
  * When a character uses a skill they have proficiency in,
@@ -90,8 +93,21 @@ function heal(maxHp, currentHp, healAmount) {
  * @returns {number} the character's proficiency bonus
  */
 function getProficiencyBonus(level, rank) {
-  // TODO
+  if (rank === 'untrained') {
+    return level + 0;
+  } else if (rank === 'trained') {
+    return level + 2;
+  } else if (rank === 'expert') {
+    return level + 4;
+  } else if (rank === 'master') {
+    return level + 6;
+  } else if (rank === 'legendary') {
+    return level + 8;
+  }
 }
+
+console.log(getProficiencyBonus(5, 'trained'));
+console.log(getProficiencyBonus(6, 'expert'));
 
 /**
  * A creature can get a bonus to its armor class (AC) by taking cover.
