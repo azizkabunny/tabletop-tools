@@ -108,6 +108,7 @@ function getProficiencyBonus(level, rank) {
 
 console.log(getProficiencyBonus(5, 'trained'));
 console.log(getProficiencyBonus(6, 'expert'));
+console.log(getProficiencyBonus(1, 'trained'));
 
 /**
  * A creature can get a bonus to its armor class (AC) by taking cover.
@@ -120,8 +121,17 @@ console.log(getProficiencyBonus(6, 'expert'));
  * @returns {number} the cover bonus to AC
  */
 function getCoverBonus(behindObstacle, takingCover) {
-  // TODO
+  if (behindObstacle === false) {
+    return 0;
+  } else if (takingCover === true) {
+    return 4;
+  }
+  return 2;
 }
+
+console.log(getCoverBonus(true, true));
+console.log(getCoverBonus(true, false));
+console.log(getCoverBonus(false, false));
 
 /**
  * A creature's current hit points (HP) is reduced by taking damage.
@@ -136,7 +146,9 @@ function getCoverBonus(behindObstacle, takingCover) {
  * @returns {number} the creature's remaining HP after taking damage
  */
 function getRemainingHp(maxHp, currentHp, damage) {
-  // TODO
+  if (damage >= maxHp) {
+    return -1;
+  }
 }
 
 /**
@@ -147,9 +159,7 @@ function getRemainingHp(maxHp, currentHp, damage) {
  * @param {string} vision - vision type: "average", "low-light", or "dark"
  * @returns {boolean} whether the creature can see
  */
-function canSee(light, vision) {
-  // TODO
-}
+function canSee(light, vision) {}
 
 /**
  * A strike deals damage if it hits, unless the strike is a critical hit,
