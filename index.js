@@ -155,11 +155,24 @@ function getRemainingHp(maxHp, currentHp, damage) {
  * All creatures can see in bright light.
  * Creatures with low-light vision can also see in dim light.
  * Creatures with darkvision can see in all light conditions.
+ *
  * @param {string} light - light condition: "bright", "dim", or "dark"
  * @param {string} vision - vision type: "average", "low-light", or "dark"
  * @returns {boolean} whether the creature can see
  */
-function canSee(light, vision) {}
+function canSee(light, vision) {
+  if (light === 'bright' && vision === 'average') {
+    return true;
+  } else if ((light === 'dim' && vision === 'low-light') || 'dark') {
+    return true;
+  } else if (light === 'dark' && vision === 'dark') {
+    return true;
+  } else return false;
+}
+
+console.log(canSee('bright', 'average'));
+console.log(canSee('dim', 'average'));
+console.log(canSee('dark', 'dark'));
 
 /**
  * A strike deals damage if it hits, unless the strike is a critical hit,
@@ -172,5 +185,11 @@ function canSee(light, vision) {}
  * @returns {number} damage dealt by the strike
  */
 function getStrikeDamage(attack, ac, damage) {
-  // TODO
+  if (attack >= ac + 10) {
+    return damage * 2;
+  } else if (attack >= ac) {
+    return damage;
+  } else return 0;
 }
+
+console.log(getStrikeDamage(25, 10, 20));
